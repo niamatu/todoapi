@@ -51,7 +51,7 @@ app.get("/todos", async (req, res) => {
     });
   }
 });
-app.patch("/todos/:id", (req, res) => {
+app.patch("/todos/:id", async (req, res) => {
   const { id } = req.params;
   const { status } = req.body;
   const todo = await Todo.updateOne({ status }).where({ _id: id });
@@ -69,7 +69,7 @@ app.patch("/todos/:id", (req, res) => {
   }
 });
 
-app.delete("/todos/:id", (req, res) => {
+app.delete("/todos/:id",async (req, res) => {
   const { id } = req.params;
   await Todo.deleteOne({ _id: id });
   return res.status(200).json({
